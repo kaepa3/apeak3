@@ -4,9 +4,10 @@ import logo from './img/logo.svg';
 import './css/App.css';
 
 export default class App extends Component {
-
-    constructor(props) {
+  
+  constructor(props) {
     super(props);
+    this.state = { isOn: true };
   }
 
 
