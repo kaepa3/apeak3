@@ -1,20 +1,31 @@
-import React from 'react';
+import React, {Component} from 'react';
+import { Helmet } from 'react-helmet';
 import logo from './img/logo.svg';
 import './css/App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <div id="header">
+export default class App extends Component {
+  
+  constructor(props) {
+    super(props);
+    this.state = { isOn: true };
+  }
+
+
+  render(){
+    return (
+      <div className="App">
+        <Helmet>
+          <title>apeak3</title>
+        </Helmet>
+        <header className="App-header">
+          <title>apeak3</title>
+          <img src={logo} className="App-logo" alt="logo" />
+          <p>
+            Project is started
+          </p>
+        </header>
       </div>
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Project is start
-        </p>
-      </header>
-    </div>
-  );
+    );
+  }
 }
 
-export default App;
