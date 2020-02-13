@@ -21,7 +21,7 @@ export default class App extends Component {
           <title>apeak3</title>
           <img src={logo} className="App-logo" alt="logo" />
           <p>
-            Project is started
+            Project was started
           </p>
         </header>
       </div>
