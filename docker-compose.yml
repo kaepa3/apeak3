@@ -3,7 +3,7 @@ version: '3'
 services:
     app:
         container_name: apeak3
-        image: kaepa3/apeak3:latest
+        image: kaepa3/apeak3:1.0.0.0
         build:
             context: .
             args:
