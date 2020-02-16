@@ -25,4 +25,8 @@ RUN echo "nginx:${NGINX_TAG}" > /docker-image-tag && cat /docker-image-tag
 COPY --from=build ${APP_HOME}/build /usr/share/nginx/html
 
 WORKDIR /usr/share/nginx/html
+
+COPY nginx_conf/ssl /etc/nginx/ssl
+ADD nginx_conf/default.conf /etc/nginx/conf.d
+
 CMD ["nginx", "-g", "daemon off;"]
