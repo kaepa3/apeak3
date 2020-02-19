@@ -1,25 +1,18 @@
 import React, {Component} from 'react';
 import logo from './img/logo.svg';
 import './css/App.css';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+
+import Default from './Default.js';
 
 export default class App extends Component {
-  
-  constructor(props) {
-    super(props);
-    this.state = { isOn: true };
-  }
-
-
   render(){
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Project was started
-          </p>
-        </header>
-      </div>
+      <BrowserRouter>
+          <Switch>
+              <Route path="/" component={Default} />
+          </Switch>
+      </BrowserRouter>
     );
   }
 }
