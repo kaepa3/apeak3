@@ -1,0 +1,28 @@
+:root{
+--header-size: 44px;
+--header-color: #40c0d0;
+}
+
+.Header{
+  height: var(--header-size);
+  background: var(--header-color);
+  display: flex;
+  position: fixed;
+  justify-content: space-between;
+  transition: .5s;
+  width: 100%;
+}
+.Icon{
+  height:20px;
+  display: flex;
+}
+.nav {
+  position: absolute;
+  margin: 0 -10px;
+  top: 10px;
+}
+.nav-item {
+  display: inline-block;
+  margin-right: 2em;
+  vertical-align: middle;
+}

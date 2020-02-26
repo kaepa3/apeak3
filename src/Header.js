@@ -1,21 +1,39 @@
 import React, {Component} from 'react';
+import icon from './img/icon.ico'
+import './Header.css'
 
-export default class Header extends Component {
+import { withRouter } from 'react-router';
+
+class Header extends Component {
+  constructor(props) {
+    super(props);
+
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick(e) {
+    switch(e.currentTarget.textContent)
+    {
+        case "apeak3":
+          this.props.history.push('/about')
+          break;
+        default:
+          this.props.history.push('/')
+          break;
+    }
+
+  }
   render(){
     return (
-      <div style={styles.header} >
-        <p>header</p>
+      <div className='Header'>
+      <ul className='nav'>
+      <li className='nav-item' onClick={this.handleClick}><img src={icon} className='Icon' alt="icon" /></li>
+      <li className='nav-item' onClick={this.handleClick}>apeak3</li>
+      </ul>
       </div>
     );
   }
 }
 
-const styles = {
-  header:{
-    verticalAlign: 'middle',
-    width: "100%",
-    height:50,
-    background: "#00cde1",
-    position: "fixed",
-  }
-}
+export default withRouter(Header)
+
