@@ -4,7 +4,7 @@ import { withRouter } from 'react-router';
 
 const Top = () => {
     return (
-        <div>
+        <div className="center-content">
           <img src={logo} className="App-logo" alt="logo" />
           <p>
             Project was started

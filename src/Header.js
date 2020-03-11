@@ -17,6 +17,9 @@ class Header extends Component {
         case "apeak3":
           this.props.history.push('/about')
           break;
+        case "publish":
+          this.props.history.push('/publish')
+          break;
         default:
           this.props.history.push('/')
           break;
@@ -29,6 +32,7 @@ class Header extends Component {
       <ul className='nav'>
       <li className='nav-item' onClick={this.handleClick}><img src={icon} className='Icon' alt="icon" /></li>
       <li className='nav-item' onClick={this.handleClick}>apeak3</li>
+      <li className='nav-item' onClick={this.handleClick}>publish</li>
       </ul>
       </div>
     );

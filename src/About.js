@@ -3,7 +3,7 @@ import { withRouter } from 'react-router';
 
 const About = () =>{
     return(
-        <div>
+        <div className="center-content">
       this is my playground
         </div>
     );

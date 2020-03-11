@@ -5,6 +5,7 @@ import { BrowserRouter, Switch, Route, Link} from 'react-router-dom';
 import Header from './Header';
 import Top from './Top.js';
 import About from './About.js';
+import Publish from './Publish.js';
 
 export default class Default extends Component {
   constructor(props){
@@ -20,6 +21,7 @@ export default class Default extends Component {
             <Switch>
               <Route path="/" exact component={Top} />
               <Route path="/about" component={About} />
+              <Route path="/publish" component={Publish} />
             </Switch>
           </main>
         </BrowserRouter>
