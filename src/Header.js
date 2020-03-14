@@ -31,7 +31,7 @@ class Header extends Component {
     return (
       <div className='Header'>
       <ul className='nav'>
-      <li className='nav-item' onClick={this.handleClick}><img src={icon} className='Icon' alt="icon" /></li>
+      <li className='nav-icon' onClick={this.handleClick}><img src={icon} className='Icon' alt="icon" /></li>
       <li className='nav-item' onClick={this.handleClick}>
         <Menu>apeak3</Menu>
       </li>

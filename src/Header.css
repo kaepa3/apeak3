@@ -9,7 +9,6 @@
   display: flex;
   position: fixed;
   justify-content: space-between;
-  transition: .5s;
   width: 100%;
 }
 .Icon{
@@ -18,11 +17,18 @@
 }
 .nav {
   position: absolute;
-  margin: 0 -10px;
+  margin: 0px 5px;
   top: 10px;
+}
+.nav-icon{
+  display: inline-block;
+  vertical-align: middle;
+  min-width: 40px;
+  text-align: center
 }
 .nav-item {
   display: inline-block;
-  margin-right: 2em;
   vertical-align: middle;
+  min-width: 70px;
+  text-align: center
 }
