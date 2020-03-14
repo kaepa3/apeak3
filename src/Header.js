@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import icon from './img/icon.ico'
 import './Header.css'
+import Menu from './component/Menu/index.js'
 
 import { withRouter } from 'react-router';
 
@@ -31,8 +32,12 @@ class Header extends Component {
       <div className='Header'>
       <ul className='nav'>
       <li className='nav-item' onClick={this.handleClick}><img src={icon} className='Icon' alt="icon" /></li>
-      <li className='nav-item' onClick={this.handleClick}>apeak3</li>
-      <li className='nav-item' onClick={this.handleClick}>publish</li>
+      <li className='nav-item' onClick={this.handleClick}>
+        <Menu>apeak3</Menu>
+      </li>
+      <li className='nav-item' onClick={this.handleClick}>
+        <Menu>publish</Menu>
+      </li>
       </ul>
       </div>
     );
