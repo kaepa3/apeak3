@@ -1,15 +1,16 @@
-.ballon {
-    min-width: 200px;
+.menu {
   position: relative;
   text-decoration: none;
+  cursor : pointer;
+  text-align: center;
 }
 
-.ballon::after {
+.menu::after {
   position: absolute;
   bottom: 2px;
-  left: 0;
+  left: -10%;
   content: '';
-  width: 100%;
+  width: 120%;
   height: 2px;
   background: #333;
   opacity: 0;
@@ -17,7 +18,7 @@
   transition: .2s;
 }
 
-.ballon:hover::after {
+.menu:hover::after {
   bottom: -4px;
   opacity: 1;
   visibility: visible;
