@@ -1,20 +1,26 @@
-import React from 'react';
-import logo from './img/logo.svg';
+import React, {Component} from 'react';
 import './css/App.css';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
-function App() {
-  return (
-    <div className="App">
-      <div id="header">
-      </div>
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Project is start
-        </p>
-      </header>
-    </div>
-  );
+import Header from './Header';
+import Top from './Top.js';
+import About from './About.js';
+import Publish from './Publish.js';
+
+export default class App extends Component {
+  render(){
+    return (
+      <BrowserRouter>
+        <Header onMyMenuClicked={this.clicked} />
+        <main className="main-content">
+          <Switch>
+            <Route path="/" exact component={Top} />
+            <Route path="/about" component={About} />
+            <Route path="/publish" component={Publish} />
+          </Switch>
+        </main>
+      </BrowserRouter>
+    );
+  }
 }
 
-export default App;
