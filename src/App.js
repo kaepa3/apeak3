@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
-import './css/App.css';
+import './App.css';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import Header from './Header';
-import Top from './Top.js';
-import About from './About.js';
-import Publish from './Publish.js';
+import Top from './page/Top.js';
+import About from './page/About.js';
+import Publish from './page/Publish.js';
 
 export default class App extends Component {
   render(){

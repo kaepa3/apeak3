@@ -1,6 +1,5 @@
 import React from "react";
-import logo from './img/logo.svg';
-import { withRouter } from 'react-router';
+import logo from './../img/logo.svg';
 
 const Top = () => {
     return (
