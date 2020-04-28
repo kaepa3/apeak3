@@ -13,9 +13,11 @@ class Publish extends Component{
     return(
       <div>
         <div id="article" dangerouslySetInnerHTML={{__html:marked(this.markdown)}}></div>
+        <div>
         {Object.keys(this.articles).map(key => (
             <Card />
         ))}
+        </div>
       </div>
     );
   }
