@@ -1,0 +1,4 @@
+.card_panel{
+    display: inline-block;      /* インラインブロック要素にする */
+    padding: 50px;              /* 余白指定 */
+}

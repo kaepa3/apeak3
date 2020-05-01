@@ -1,7 +1,9 @@
 .card{
+  margin: 50px;
   width: 288px;
   height: auto;
   color: black;
+  display: inline-block;
 }
 
 .card__imgframe{

@@ -5,7 +5,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Header from './Header';
 import Top from './page/Top.js';
 import About from './page/About.js';
-import Publish from './page/Publish.js';
+import Publish from './page/Publish/index.js';
 
 export default class App extends Component {
   render(){
