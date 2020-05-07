@@ -28,21 +28,21 @@ class Publish extends Component{
         var title = createTitle(text)
         var sub = createSubText(text)
         const articles_copy = this.state.articles.slice();
-        articles_copy.push ({title: title, text:sub})
+        articles_copy.push ({title: title, text:sub, article:text})
         this.setState({
           articles : articles_copy 
         })
       })
   }
-  handleClick(e) {
-    console.log('The link was clicked.');
-    console.log(e);
+  handleClick(e, i) {
+    console.log(e.currentTarget)
+    console.log(e.currentTarget)
   }
 
   render(){
     return(
       <div>
-        <div onClick={this.handleClick} className={styles.card_panel}>
+        <div className={styles.card_panel}>
           {this.state.articles.map((item) => (
             <Card onClick={this.handleClick} key={item.title} {...item} />
            ))}
