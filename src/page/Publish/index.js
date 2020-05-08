@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router';
 import Card from '../../component/Card/index.js';
-import styles from "./styles.module.css"
+import styles from "./styles.module.scss"
 
 function createTitle (text)  {
   var title = text.substr(0 , text.indexOf('\n'))
@@ -28,7 +28,7 @@ class Publish extends Component{
         var title = createTitle(text)
         var sub = createSubText(text)
         const articles_copy = this.state.articles.slice();
-        articles_copy.push ({title: title, text:sub, article:text})
+        articles_copy.push ({title: title, describe:sub, article:text})
         this.setState({
           articles : articles_copy 
         })
@@ -36,7 +36,8 @@ class Publish extends Component{
   }
   handleClick(e, i) {
     console.log(e.currentTarget)
-    console.log(e.currentTarget)
+    var article = e.currentTarget.getAttribute("article")
+    this.setState({article: article})
   }
 
   render(){
@@ -47,8 +48,68 @@ class Publish extends Component{
             <Card onClick={this.handleClick} key={item.title} {...item} />
            ))}
         </div>
+        <PopupMenu/>
       </div>
     );
   }
 }
 export default withRouter(Publish)
+
+const { useState, useEffect, useRef } = React
+
+const PopupMenu = () => {
+  const [isShown, setIsShown] = useState(false)
+  const popupRef = useRef()
+  const documentClickHandler = useRef()
+  
+  useEffect(() => {
+    documentClickHandler.current = e => {
+      console.log('documentClickHandler')
+      
+      if (popupRef.current.contains(e.target)) return
+
+      setIsShown(false)
+      removeDocumentClickHandler()
+    }
+  }, [])
+  
+  const removeDocumentClickHandler = () => {
+    console.log('removeDocumentClickHandler')
+    
+    document.removeEventListener('click', documentClickHandler.current)
+  }
+  
+  const handleToggleButtonClick = () => {
+    console.log('handleToggleButtonClick')
+    
+    if (isShown) return
+    
+    setIsShown(true)
+    document.addEventListener('click', documentClickHandler.current)
+  }
+  
+  const handleCloseButtonClick = () => {
+    console.log('handleCloseButtonClick')
+    
+    setIsShown(false)
+    removeDocumentClickHandler()
+  }
+  
+  return (
+
+    <div className={styles.popupMenuContainer}>
+      <button onClick={handleToggleButtonClick}>
+        Toggle Menu
+      </button>
+      <div
+        className={`${styles.popupMenu} ${isShown ? styles.shown: ''}`}
+        ref={popupRef}
+      >
+        <div>menu</div>
+        <button onClick={handleCloseButtonClick}>
+          Close Menu
+        </button>
+      </div>
+    </div> 
+  )
+}

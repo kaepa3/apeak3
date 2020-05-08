@@ -1,0 +1,26 @@
+.card_panel{
+  display: inline-block;      /* インラインブロック要素にする */
+  padding: 60px 10px;              /* 余白指定 */
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.popupMenuContainer {
+  position: relative;
+}
+
+
+.popupMenu {
+  transform: scale(0);
+  transform-origin: top left;
+  transition: transform 0.2s;
+
+  &.shown {
+    transform: scale(1);
+  }
+}
+
