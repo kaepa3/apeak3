@@ -34,16 +34,13 @@ class Publish extends Component{
         var sub = this.createSubText(text)
         const articles_copy = this.state.articles.slice();
         articles_copy.push ({title: title, describe:sub, article:text})
-        this.setState({
-          articles : articles_copy 
-        })
+        this.setState({articles: articles_copy})
       })
   }
   componentWillUnmount() {
     document.removeEventListener('click', this.handleClickEvent)
   }
   handleClick(e) {
-    console.log(e.currentTarget)
     var article = e.currentTarget.getAttribute("article")
     this.setState({article: article, isShown: true})
     document.addEventListener('click', this.handleClickEvent)
@@ -62,20 +59,18 @@ class Publish extends Component{
 
   render(){
     return(
-      <div>
+      <div className={styles.mainPanel}>
         <div className={styles.card_panel}>
           {this.state.articles.map((item) => (
             <Card onClick={this.handleClick} key={item.title} {...item} />
            ))}
         </div>
-        <div className={styles.popupMenuContainer}>
           <div className={`${styles.popupMenu} ${this.state.isShown ? styles.shown: ''}`} ref={this.modalRef}>
             <div>{this.state.article}</div>
             <button onClick={this.handleCloseButtonClick}>
               Close Menu
             </button>
           </div>
-        </div> 
       </div>
     );
   }

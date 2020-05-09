@@ -1,6 +1,9 @@
+.mainPanel{
+}
 .card_panel{
-  display: inline-block;      /* インラインブロック要素にする */
-  padding: 60px 10px;              /* 余白指定 */
+  z-index: 2;
+  display: inline-block;
+  padding: 60px 10px;
 }
 
 .container {
@@ -13,11 +16,18 @@
   position: relative;
 }
 
-
 .popupMenu {
+  position: absolute;
+  background: white;
   transform: scale(0);
   transform-origin: top left;
   transition: transform 0.2s;
+  z-index: 1;
+  top: 10%;
+  left: 5%;
+  width: 90vw;
+  min-height: 80%;
+  color: darkgray;
 
   &.shown {
     transform: scale(1);
