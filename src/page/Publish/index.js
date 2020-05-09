@@ -1,22 +1,27 @@
 import React, { Component } from 'react'
-import { withRouter } from 'react-router';
 import Card from '../../component/Card/index.js';
 import styles from "./styles.module.scss"
 
-function createTitle (text)  {
-  var title = text.substr(0 , text.indexOf('\n'))
-  return title.replace('# ','' )
-}
-function createSubText(text){
-  var first_idx = text.indexOf('\n');
-  var second_idx = text.indexOf('\n', first_idx + 1);
-  return text.substr(first_idx, second_idx)
-}
 class Publish extends Component{
   constructor(props) {
 		super(props);
-    this.state = { articles: []};
+    this.state = { articles: [], isShown: false};
     this.handleClick= this.handleClick.bind(this);
+    this.handleClickEvent= this.handleClickEvent.bind(this);
+    this.handleCloseButtonClick= this.handleCloseButtonClick.bind(this);
+    this.modalRef = React.createRef()
+  }
+  createTitle = (text) => {
+    var title = text.substr(0 , text.indexOf('\n'))
+    return title.replace('# ','' )
+  }
+  createSubText = (text) => {
+    var first_idx = text.indexOf('\n');
+    var second_idx = text.indexOf('\n', first_idx + 1);
+    return text.substr(first_idx, second_idx)
+  }
+  removeDocumentClickHandler = ()  => {
+    document.removeEventListener('click', this.handleClickEvent)
   }
   componentDidMount() {
     const readmePath = require("./hoge.md");
@@ -25,8 +30,8 @@ class Publish extends Component{
         return response.text()
       })
       .then(text => {
-        var title = createTitle(text)
-        var sub = createSubText(text)
+        var title = this.createTitle(text)
+        var sub = this.createSubText(text)
         const articles_copy = this.state.articles.slice();
         articles_copy.push ({title: title, describe:sub, article:text})
         this.setState({
@@ -34,10 +39,25 @@ class Publish extends Component{
         })
       })
   }
-  handleClick(e, i) {
+  componentWillUnmount() {
+    document.removeEventListener('click', this.handleClickEvent)
+  }
+  handleClick(e) {
     console.log(e.currentTarget)
     var article = e.currentTarget.getAttribute("article")
-    this.setState({article: article})
+    this.setState({article: article, isShown: true})
+    document.addEventListener('click', this.handleClickEvent)
+  }
+  handleClickEvent(e){
+    if (this.modalRef && this.modalRef.current && !this.modalRef.current.contains(e.target)) 
+    {
+     this.setState({isShown: false})
+     this.removeDocumentClickHandler()
+    }
+  }
+  handleCloseButtonClick ()  {
+    this.setState({isShown: false})
+    this.removeDocumentClickHandler()
   }
 
   render(){
@@ -48,68 +68,16 @@ class Publish extends Component{
             <Card onClick={this.handleClick} key={item.title} {...item} />
            ))}
         </div>
-        <PopupMenu/>
+        <div className={styles.popupMenuContainer}>
+          <div className={`${styles.popupMenu} ${this.state.isShown ? styles.shown: ''}`} ref={this.modalRef}>
+            <div>{this.state.article}</div>
+            <button onClick={this.handleCloseButtonClick}>
+              Close Menu
+            </button>
+          </div>
+        </div> 
       </div>
     );
   }
 }
-export default withRouter(Publish)
-
-const { useState, useEffect, useRef } = React
-
-const PopupMenu = () => {
-  const [isShown, setIsShown] = useState(false)
-  const popupRef = useRef()
-  const documentClickHandler = useRef()
-  
-  useEffect(() => {
-    documentClickHandler.current = e => {
-      console.log('documentClickHandler')
-      
-      if (popupRef.current.contains(e.target)) return
-
-      setIsShown(false)
-      removeDocumentClickHandler()
-    }
-  }, [])
-  
-  const removeDocumentClickHandler = () => {
-    console.log('removeDocumentClickHandler')
-    
-    document.removeEventListener('click', documentClickHandler.current)
-  }
-  
-  const handleToggleButtonClick = () => {
-    console.log('handleToggleButtonClick')
-    
-    if (isShown) return
-    
-    setIsShown(true)
-    document.addEventListener('click', documentClickHandler.current)
-  }
-  
-  const handleCloseButtonClick = () => {
-    console.log('handleCloseButtonClick')
-    
-    setIsShown(false)
-    removeDocumentClickHandler()
-  }
-  
-  return (
-
-    <div className={styles.popupMenuContainer}>
-      <button onClick={handleToggleButtonClick}>
-        Toggle Menu
-      </button>
-      <div
-        className={`${styles.popupMenu} ${isShown ? styles.shown: ''}`}
-        ref={popupRef}
-      >
-        <div>menu</div>
-        <button onClick={handleCloseButtonClick}>
-          Close Menu
-        </button>
-      </div>
-    </div> 
-  )
-}
+export default Publish
