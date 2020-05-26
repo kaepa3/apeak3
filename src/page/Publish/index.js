@@ -19,7 +19,6 @@ class Publish extends Component{
     this.handleCloseButtonClick= this.handleCloseButtonClick.bind(this);
     this.modalRef = React.createRef()
     this.imgList = { test, hoge};
-    console.log(this.imgList)
   }
   createTitle = (text) => {
     var title = text.substr(0 , text.indexOf('\n'))
@@ -29,6 +28,11 @@ class Publish extends Component{
     var first_idx = text.indexOf('\n');
     var second_idx = text.indexOf('\n', first_idx + 1);
     return text.substr(first_idx, second_idx)
+  }
+  getFirstImage(text){
+    var pattern = /!\[.*\]\((.*)\)|!\[.*\]\[.*\]|\[.*\]: .*"".*""/;
+    var result = text.match(pattern);
+    return result[1].split(' ')[0]
   }
   removeDocumentClickHandler = ()  => {
     document.removeEventListener('click', this.handleClickEvent)
@@ -42,21 +46,20 @@ class Publish extends Component{
       .then(text => {
         var title = this.createTitle(text)
         var sub = this.createSubText(text)
-        const articles_copy = this.state.articles.slice();
         var article = this.exchangeImg(text)
-        articles_copy.push ({title: title, describe:sub, article:article})
+        var imgUrl = this.getFirstImage(article)
+        const articles_copy = this.state.articles.slice();
+        articles_copy.push ({title: title, describe:sub, article:article, imgSrc: imgUrl})
         this.setState({articles: articles_copy})
       })
   }
   exchangeImg(text){
+    var result = text
     Object.keys(this.imgList).map(key => {
-      console.log(key )
-      console.log( get_extension (this.imgList[key]))
       var extension = get_extension (this.imgList[key])
-      text =  text.replace(key +'.'+extension, this.imgList[key])
+      result =  result.replace(key +'.'+extension, this.imgList[key])
     })
-    console.log(text)
-    return text
+    return result
   }
   componentWillUnmount() {
     document.removeEventListener('click', this.handleClickEvent)
