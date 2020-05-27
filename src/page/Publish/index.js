@@ -3,6 +3,10 @@ import Card from '../../component/Card/index.js';
 import Button from '../../component/Button/index.js';
 import styles from "./styles.module.scss"
 import marked from 'marked';
+import hljs from 'highlight.js'
+import 'highlight.js/styles/github.css';
+
+
 import test from './test.jpg';
 import hoge from './test.jpg';
 
@@ -63,6 +67,18 @@ class Publish extends Component{
   }
   componentWillUnmount() {
     document.removeEventListener('click', this.handleClickEvent)
+  }
+  
+  componentDidUpdate() {
+    marked.setOptions({
+        highlight: function(code, lang) {
+    console.log(
+          hljs.highlightAuto(code, [lang]).value
+)
+
+          return hljs.highlightAuto(code, [lang]).value;
+        }
+    });
   }
   handleClick(e) {
     var article = marked(e.currentTarget.getAttribute("article"))

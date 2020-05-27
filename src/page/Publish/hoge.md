@@ -15,7 +15,9 @@
 ## 方法
 BLE機器はアドバタイズを定周期で投げているからそれを拾うわけである。
 
-```plantuml
-hoge -> ho
+```go
+func main(){
+  fmt.Println("hello")
+}
 
 ```
