@@ -8,7 +8,7 @@ import 'highlight.js/styles/github.css';
 
 
 import test from './test.jpg';
-import hoge from './test.jpg';
+import sbth from './sbth.png';
 
 function get_extension(filename) {
     return filename.slice((filename.lastIndexOf('.') - 1 >>> 0) + 2);
@@ -22,7 +22,7 @@ class Publish extends Component{
     this.handleClickEvent= this.handleClickEvent.bind(this);
     this.handleCloseButtonClick= this.handleCloseButtonClick.bind(this);
     this.modalRef = React.createRef()
-    this.imgList = { test, hoge};
+    this.imgList = { sbth };
   }
   createTitle = (text) => {
     var title = text.substr(0 , text.indexOf('\n'))
@@ -42,7 +42,7 @@ class Publish extends Component{
     document.removeEventListener('click', this.handleClickEvent)
   }
   componentDidMount() {
-    const readmePath = require("./hoge.md");
+    const readmePath = require("./sbth.md");
     fetch(readmePath)
       .then(response => {
         return response.text()
