@@ -17,6 +17,10 @@
 }
 
 .popupMenu {
+  font-size:12pt;
+  max-height: 85%;
+  overflow:scroll;
+  padding: 10px;
   position: absolute;
   background: white;
   transform: scale(0);
@@ -35,17 +39,19 @@
 }
 
 .closePanel{
-    position: absolute;
-    bottom: 10px; /** 場合によっては微調整 **/
-    right: 10px;  /** 場合によっては微調整 **/
+  width: auto;
+  height: auto;
+  padding: 20px;
 }
 .closeButton{
-  width: 30px;
+  display:block;
+  margin: 0 auto 0 auto;
   font-size: 9pt;
 }
 
 
 h1 {
+  font-size:24pt;
  counter-reset: chapter;
  text-decoration: underline;
 }
