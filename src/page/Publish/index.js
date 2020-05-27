@@ -6,8 +6,6 @@ import marked from 'marked';
 import hljs from 'highlight.js'
 import 'highlight.js/styles/github.css';
 
-
-import test from './test.jpg';
 import sbth from './sbth.png';
 
 function get_extension(filename) {
