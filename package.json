@@ -10,7 +10,7 @@
     "highlight.js": "^10.0.3",
     "highlightjs": "^9.16.2",
     "marked": "^0.8.0",
-    "node-sass": "^4.14.1",
+    "node-sass": "^7.0.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-helmet": "^5.2.1",
